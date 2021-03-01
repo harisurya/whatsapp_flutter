@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:whatsapp_flutter/bloc/blocs.dart';
 import 'package:whatsapp_flutter/shared/shared.dart';
+import 'package:whatsapp_flutter/ui/widgets/widgets.dart';
 
 part 'wrapper.dart';
 part 'home_page.dart';

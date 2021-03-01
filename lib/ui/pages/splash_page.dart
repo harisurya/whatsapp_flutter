@@ -32,7 +32,7 @@ class SplashPageState extends State<SplashPage> {
         body: Stack(
           children: [
             Container(
-              color: tealGreenDark,
+              color: darkBackground,
             ),
             SafeArea(
                 child: Container(
@@ -42,6 +42,8 @@ class SplashPageState extends State<SplashPage> {
               alignment: Alignment.center,
               child: Container(
                 child: Image(
+                    width: 250,
+                    height: 250,
                     image: AssetImage("assets/logo_white.png"),
                     fit: BoxFit.cover),
               ),

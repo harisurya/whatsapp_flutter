@@ -20,26 +20,31 @@ class _BoardingPageState extends State<BoardingPage> {
               child: Container(
             color: darkBackground,
           )),
-          Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-              margin: EdgeInsets.only(top: 50),
-              child: Text(
-                "Welcome to WhatsApp",
-                style: whiteTextFont.copyWith(
-                    fontSize: 28, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment.topCenter,
+          //   child: Container(
+          //     margin: EdgeInsets.symmetric( vertical: 50),
+          //     child: Text(
+          //       "Welcome to WhatsApp",
+          //       style: whiteTextFont.copyWith(
+          //           fontSize: 28, fontWeight: FontWeight.bold),
+          //     ),
+          //   ),
+          // ),
           Align(
             alignment: Alignment.center,
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              height: 500,
+              margin: EdgeInsets.symmetric(vertical: 50),
+              height: MediaQuery.of(context).size.height - 230,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Text(
+                    "Welcome to WhatsApp",
+                    style: whiteTextFont.copyWith(
+                        fontSize: 28, fontWeight: FontWeight.bold),
+                  ),
                   Image(
                       width: 250,
                       height: 250,

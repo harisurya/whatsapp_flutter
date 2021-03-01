@@ -1,7 +1,10 @@
 part of 'widgets.dart';
 
-class ChatPreviewWidget extends StatelessWidget {
-  const ChatPreviewWidget({Key key}) : super(key: key);
+class StatusPreviewWidget extends StatelessWidget {
+  final String title;
+  final String desc;
+
+  const StatusPreviewWidget({Key key, this.title, this.desc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,7 @@ class ChatPreviewWidget extends StatelessWidget {
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   image: NetworkImage(
-                      "http://t3.gstatic.com/images?q=tbn:ANd9GcQzxoPDNWC7vxR69YKHno3HR4f2rdpTwcXmA6PVBZHUxF5_ku83LolOsgYYQ9Wo"),
+                      "https://vz.cnwimg.com/thumbc-300x300/wp-content/uploads/2010/06/Elon-Musk.jpg"),
                   fit: BoxFit.cover,
                 )),
           ),
@@ -30,27 +33,20 @@ class ChatPreviewWidget extends StatelessWidget {
             height: 70,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Justin Timberlake",
-                      style: whiteTextFont.copyWith(
-                          fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                    Text("13:51", style: whiteTextFont)
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
                 Text(
-                  "Okay, I ll meet you there buddy",
+                  title,
+                  style: whiteTextFont.copyWith(
+                      fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  desc,
                   style: whiteTextFont.copyWith(fontSize: 14),
                 ),
-                SizedBox(height: 28,),
+                 SizedBox(height: 28),
                 Container(
                   height: 1,
                   color: Colors.white.withOpacity(0.2),

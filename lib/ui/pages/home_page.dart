@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
       Align(
           alignment: Alignment.topLeft,
           child: Container(
-            margin: EdgeInsets.only(top: 25),
+            margin: EdgeInsets.only(top: 50),
             child: Column(
               children: [
                 Container(
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height - 105,
+                  height: MediaQuery.of(context).size.height - 130,
                   color: darkBackground,
                   child: PageView(
                     controller: pageController,
@@ -86,9 +86,9 @@ class _HomePageState extends State<HomePage> {
                       });
                     },
                     children: [
-                      Text("CHATS", style: whiteTextFont),
-                      Text("status", style: whiteTextFont),
-                      Text("calls", style: whiteTextFont)
+                      displayChatHistory(),
+                      displayStatusHistory(),
+                      displayCallHistory(),
                     ],
                   ),
                 )
@@ -146,6 +146,71 @@ class _HomePageState extends State<HomePage> {
       width: (MediaQuery.of(context).size.width - 2 * defaultMargin) - 40,
       height: 40,
       child: Row(
+        children: widgets,
+      ),
+    );
+  }
+
+  Widget displayChatHistory() {
+    List<Widget> widgets = [];
+
+    for (var i = 0; i < 20; i++) {
+      widgets.add(ChatPreviewWidget());
+    }
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      physics: ClampingScrollPhysics(),
+      child: Column(
+        children: widgets,
+      ),
+    );
+  }
+
+  Widget displayStatusHistory() {
+    List<Widget> widgets = [];
+
+    widgets.add(StatusPreviewWidget(
+      title: "My Status",
+      desc: "Tap to add status update",
+    ));
+    widgets.add(Container(
+      margin: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 20),
+      child: Text("Recent updates",
+          style: whiteTextFont.copyWith(
+              fontWeight: FontWeight.bold, fontSize: 14)),
+    ));
+
+    for (int i = 0; i < 20; i++) {
+      widgets.add(StatusPreviewWidget(
+        title: "John Doe $i",
+        desc: "Today, 13:" + (i < 10 ? "0" : "") + "$i",
+      ));
+    }
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      physics: ClampingScrollPhysics(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: widgets,
+      ),
+    );
+  }
+
+  Widget displayCallHistory() {
+    List<Widget> widgets = [];
+
+    for (int i = 0; i < 20; i++) {
+      widgets.add(CallPreviewHistoryWidget(
+          name: "John Doe $i",
+          time: "Today, 13:" + (i < 10 ? "0" : "") + "$i"));
+    }
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      physics: ClampingScrollPhysics(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: widgets,
       ),
     );

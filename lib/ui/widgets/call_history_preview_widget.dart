@@ -1,8 +1,11 @@
 part of 'widgets.dart';
 
-class ChatPreviewWidget extends StatelessWidget {
-  const ChatPreviewWidget({Key key}) : super(key: key);
+class CallPreviewHistoryWidget extends StatelessWidget {
+  final String name;
+  final String time;
 
+  const CallPreviewHistoryWidget({Key key, this.name, this.time})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,7 +21,7 @@ class ChatPreviewWidget extends StatelessWidget {
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   image: NetworkImage(
-                      "http://t3.gstatic.com/images?q=tbn:ANd9GcQzxoPDNWC7vxR69YKHno3HR4f2rdpTwcXmA6PVBZHUxF5_ku83LolOsgYYQ9Wo"),
+                      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Captain_Marvel_trailer_at_the_National_Air_and_Space_Museum_4_%28cropped%29.jpg/440px-Captain_Marvel_trailer_at_the_National_Air_and_Space_Museum_4_%28cropped%29.jpg"),
                   fit: BoxFit.cover,
                 )),
           ),
@@ -36,21 +39,20 @@ class ChatPreviewWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Justin Timberlake",
+                      name,
                       style: whiteTextFont.copyWith(
                           fontWeight: FontWeight.bold, fontSize: 16),
                     ),
-                    Text("13:51", style: whiteTextFont)
+                    Icon(Icons.call, color: tosca)
                   ],
                 ),
-                SizedBox(
-                  height: 5,
-                ),
                 Text(
-                  "Okay, I ll meet you there buddy",
+                  time,
                   style: whiteTextFont.copyWith(fontSize: 14),
                 ),
-                SizedBox(height: 28,),
+                SizedBox(
+                  height: 28,
+                ),
                 Container(
                   height: 1,
                   color: Colors.white.withOpacity(0.2),
