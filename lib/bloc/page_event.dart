@@ -28,3 +28,8 @@ class GoToSignInPage extends PageEvent {
   @override
   List<Object> get props => [];
 }
+
+class GoToSettingPage extends PageEvent {
+  @override
+  List<Object> get props => [];
+}

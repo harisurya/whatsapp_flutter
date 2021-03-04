@@ -18,7 +18,7 @@ class ChatPreviewWidget extends StatelessWidget {
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   image: NetworkImage(
-                      "http://t3.gstatic.com/images?q=tbn:ANd9GcQzxoPDNWC7vxR69YKHno3HR4f2rdpTwcXmA6PVBZHUxF5_ku83LolOsgYYQ9Wo"),
+                      "https://pyxis.nymag.com/v1/imgs/754/3aa/620e706e15ce66100afe92a5862db0526b-justin-timberlake.rvertical.w1200.jpg"),
                   fit: BoxFit.cover,
                 )),
           ),
@@ -38,9 +38,13 @@ class ChatPreviewWidget extends StatelessWidget {
                     Text(
                       "Justin Timberlake",
                       style: whiteTextFont.copyWith(
-                          fontWeight: FontWeight.bold, fontSize: 16),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: isDarkMode ? Colors.white : Colors.black),
                     ),
-                    Text("13:51", style: whiteTextFont)
+                    Text("13:51",
+                        style: whiteTextFont.copyWith(
+                            color: isDarkMode ? Colors.white : Colors.black))
                   ],
                 ),
                 SizedBox(
@@ -48,13 +52,17 @@ class ChatPreviewWidget extends StatelessWidget {
                 ),
                 Text(
                   "Okay, I ll meet you there buddy",
-                  style: whiteTextFont.copyWith(fontSize: 14),
+                  style: whiteTextFont.copyWith(
+                      fontSize: 14,
+                      color: isDarkMode ? Colors.white : Colors.black),
                 ),
-                SizedBox(height: 28,),
-                Container(
-                  height: 1,
-                  color: Colors.white.withOpacity(0.2),
-                )
+                SizedBox(
+                  height: 13,
+                ),
+                Divider(
+                  color: isDarkMode ? grey : Colors.black.withOpacity(0.2),
+                  thickness: 1,
+                ),
               ],
             ),
           )

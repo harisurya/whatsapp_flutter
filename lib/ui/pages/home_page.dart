@@ -38,7 +38,6 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Container(
                           height: 40,
-                          // color: Colors.pink,
                           child: Text(
                             "WhatsApp",
                             style: greyTextFont.copyWith(
@@ -54,8 +53,13 @@ class _HomePageState extends State<HomePage> {
                               size: 25,
                             ),
                             SizedBox(width: 10),
-                            Icon(Icons.more_vert,
-                                color: Colors.white, size: 25),
+                            GestureDetector(
+                              onTap: () {
+                                context.read<PageBloc>().add(GoToSettingPage());
+                              },
+                              child: Icon(Icons.more_vert,
+                                  color: Colors.white, size: 25),
+                            ),
                           ],
                         )
                       ],
@@ -75,9 +79,11 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                Container(
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 400),
+                  curve: Curves.easeInOut,
                   height: MediaQuery.of(context).size.height - 130,
-                  color: darkBackground,
+                  color: isDarkMode ? darkBackground : Colors.white,
                   child: PageView(
                     controller: pageController,
                     onPageChanged: (index) {
@@ -94,7 +100,23 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
-          ))
+          )),
+      Align(
+        alignment: Alignment.bottomRight,
+        child: Container(
+          margin: EdgeInsets.only(right: defaultMargin, bottom: 30),
+          child: RaisedButton(
+              elevation: 2.0,
+              padding: EdgeInsets.all(20.0),
+              color: tosca,
+              shape: CircleBorder(),
+              child: Icon(
+                Icons.chat,
+                color: Colors.white,
+              ),
+              onPressed: () {}),
+        ),
+      )
     ]));
   }
 
@@ -175,10 +197,12 @@ class _HomePageState extends State<HomePage> {
       desc: "Tap to add status update",
     ));
     widgets.add(Container(
-      margin: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 20),
+      margin: EdgeInsets.only(left: defaultMargin, right: defaultMargin, bottom: 10),
       child: Text("Recent updates",
           style: whiteTextFont.copyWith(
-              fontWeight: FontWeight.bold, fontSize: 14)),
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: isDarkMode ? Colors.white : Colors.black)),
     ));
 
     for (int i = 0; i < 20; i++) {

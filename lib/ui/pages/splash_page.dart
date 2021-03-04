@@ -14,7 +14,7 @@ class SplashPageState extends State<SplashPage> {
   }
 
   Future<Timer> loadData() async {
-    return new Timer(Duration(seconds: 3), onDoneLoading);
+    return new Timer(Duration(seconds: 2), onDoneLoading);
   }
 
   onDoneLoading() async {
@@ -34,16 +34,12 @@ class SplashPageState extends State<SplashPage> {
             Container(
               color: darkBackground,
             ),
-            SafeArea(
-                child: Container(
-              color: darkBackground,
-            )),
             Align(
               alignment: Alignment.center,
               child: Container(
                 child: Image(
-                    width: 250,
-                    height: 250,
+                    width: 220,
+                    height: 220,
                     image: AssetImage("assets/logo_white.png"),
                     fit: BoxFit.cover),
               ),

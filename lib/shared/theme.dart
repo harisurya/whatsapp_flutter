@@ -14,7 +14,7 @@ Color grey = Colors.white.withOpacity(0.8);
 TextStyle blackTextFont = GoogleFonts.lato()
     .copyWith(color: Colors.black, fontWeight: FontWeight.w500);
 TextStyle whiteTextFont = GoogleFonts.lato()
-    .copyWith(color: Colors.white, fontWeight: FontWeight.w500);
+    .copyWith(color: Colors.white, fontWeight: FontWeight.w500,);
 TextStyle greyTextFont =
     GoogleFonts.lato().copyWith(color: grey, fontWeight: FontWeight.w500);
 

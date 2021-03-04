@@ -6,6 +6,8 @@ class Wrapper extends StatefulWidget {
 }
 
 class _WrapperState extends State<Wrapper> {
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     if (!(prevPageEvent is GoToSplashPage)) {
@@ -22,6 +24,8 @@ class _WrapperState extends State<Wrapper> {
         return SignUpPage();
       } else if (pageState is OnSignInPage) {
         return SignInPage();
+      } else if (pageState is OnSettingPage) {
+        return SettingPage();
       } else {
         return HomePage();
       }

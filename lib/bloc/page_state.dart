@@ -28,6 +28,11 @@ class OnSignUpPage extends PageState {
   List<Object> get props => [];
 }
 
+class OnSettingPage extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
 class OnSignInPage extends PageState {
   @override
   List<Object> get props => [];

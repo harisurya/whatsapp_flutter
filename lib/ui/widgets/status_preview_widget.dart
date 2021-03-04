@@ -30,27 +30,31 @@ class StatusPreviewWidget extends StatelessWidget {
           ),
           Container(
             width: (MediaQuery.of(context).size.width - 2 * defaultMargin) - 90,
-            height: 70,
+            height: 85,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                   title,
                   style: whiteTextFont.copyWith(
-                      fontWeight: FontWeight.bold, fontSize: 16),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: isDarkMode ? Colors.white : Colors.black),
                 ),
                 SizedBox(height: 5),
                 Text(
                   desc,
-                  style: whiteTextFont.copyWith(fontSize: 14),
+                  style: whiteTextFont.copyWith(
+                      fontSize: 14,
+                      color: isDarkMode ? Colors.white : Colors.black),
                 ),
-                 SizedBox(height: 28),
-                Container(
-                  height: 1,
-                  color: Colors.white.withOpacity(0.2),
-                )
+
+                SizedBox(height: 10),
+                Divider(
+                  color: isDarkMode ? grey : Colors.black.withOpacity(0.2),
+                  thickness: 1,
+                ),
               ],
             ),
           )
