@@ -14,16 +14,30 @@ class StatusPreviewWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            height: 70,
-            width: 70,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: NetworkImage(
-                      "https://vz.cnwimg.com/thumbc-300x300/wp-content/uploads/2010/06/Elon-Musk.jpg"),
-                  fit: BoxFit.cover,
-                )),
+          Stack(
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: SpinKitFadingCircle(
+                  color: isDarkMode ? Colors.white : tealGreen,
+                  size: 70,
+                ),
+              ),
+              Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  height: 70,
+                  width: 70,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: NetworkImage(
+                            "https://vz.cnwimg.com/thumbc-300x300/wp-content/uploads/2010/06/Elon-Musk.jpg"),
+                        fit: BoxFit.cover,
+                      )),
+                ),
+              )
+            ],
           ),
           SizedBox(
             width: 20,
@@ -49,7 +63,6 @@ class StatusPreviewWidget extends StatelessWidget {
                       fontSize: 14,
                       color: isDarkMode ? Colors.white : Colors.black),
                 ),
-
                 SizedBox(height: 10),
                 Divider(
                   color: isDarkMode ? grey : Colors.black.withOpacity(0.2),

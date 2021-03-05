@@ -28,77 +28,82 @@ class _HomePageState extends State<HomePage> {
           alignment: Alignment.topLeft,
           child: Container(
             margin: EdgeInsets.only(top: 50),
-            child: Column(
-              children: [
-                Container(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: [
+                  Container(
+                      margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            height: 40,
+                            child: Text(
+                              "WhatsApp",
+                              style: greyTextFont.copyWith(
+                                  fontSize: 20, fontWeight: FontWeight.w800),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Icon(
+                                Icons.search,
+                                color: Colors.white,
+                                size: 25,
+                              ),
+                              SizedBox(width: 10),
+                              GestureDetector(
+                                onTap: () {
+                                  context
+                                      .read<PageBloc>()
+                                      .add(GoToSettingPage());
+                                },
+                                child: Icon(Icons.more_vert,
+                                    color: Colors.white, size: 25),
+                              ),
+                            ],
+                          )
+                        ],
+                      )),
+                  Container(
                     margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                    height: 40,
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          height: 40,
-                          child: Text(
-                            "WhatsApp",
-                            style: greyTextFont.copyWith(
-                                fontSize: 20, fontWeight: FontWeight.w800),
-                          ),
+                        Icon(
+                          Icons.camera_alt,
+                          color: grey,
+                          size: 25,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.search,
-                              color: Colors.white,
-                              size: 25,
-                            ),
-                            SizedBox(width: 10),
-                            GestureDetector(
-                              onTap: () {
-                                context.read<PageBloc>().add(GoToSettingPage());
-                              },
-                              child: Icon(Icons.more_vert,
-                                  color: Colors.white, size: 25),
-                            ),
-                          ],
-                        )
+                        displayBarHeader()
                       ],
-                    )),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-                  height: 40,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(
-                        Icons.camera_alt,
-                        color: grey,
-                        size: 25,
-                      ),
-                      displayBarHeader()
-                    ],
+                    ),
                   ),
-                ),
-                AnimatedContainer(
-                  duration: Duration(milliseconds: 400),
-                  curve: Curves.easeInOut,
-                  height: MediaQuery.of(context).size.height - 130,
-                  color: isDarkMode ? darkBackground : Colors.white,
-                  child: PageView(
-                    controller: pageController,
-                    onPageChanged: (index) {
-                      setState(() {
-                        selectedIndex = index;
-                      });
-                    },
-                    children: [
-                      displayChatHistory(),
-                      displayStatusHistory(),
-                      displayCallHistory(),
-                    ],
-                  ),
-                )
-              ],
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: 400),
+                    curve: Curves.easeInOut,
+                    height: MediaQuery.of(context).size.height - 130,
+                    color: isDarkMode ? darkBackground : Colors.white,
+                    child: PageView(
+                      controller: pageController,
+                      onPageChanged: (index) {
+                        setState(() {
+                          selectedIndex = index;
+                        });
+                      },
+                      children: [
+                        displayChatHistory(),
+                        displayStatusHistory(),
+                        displayCallHistory(),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           )),
       Align(
@@ -114,7 +119,9 @@ class _HomePageState extends State<HomePage> {
                 Icons.chat,
                 color: Colors.white,
               ),
-              onPressed: () {}),
+              onPressed: () {
+                context.read<PageBloc>().add(GoToContactPage());
+              }),
         ),
       )
     ]));
@@ -165,7 +172,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     return Container(
-      width: (MediaQuery.of(context).size.width - 2 * defaultMargin) - 40,
+      // width: (MediaQuery.of(context).size.width - 2 * defaultMargin)ç - 40,
       height: 40,
       child: Row(
         children: widgets,
@@ -197,7 +204,8 @@ class _HomePageState extends State<HomePage> {
       desc: "Tap to add status update",
     ));
     widgets.add(Container(
-      margin: EdgeInsets.only(left: defaultMargin, right: defaultMargin, bottom: 10),
+      margin: EdgeInsets.only(
+          left: defaultMargin, right: defaultMargin, bottom: 10),
       child: Text("Recent updates",
           style: whiteTextFont.copyWith(
               fontWeight: FontWeight.bold,

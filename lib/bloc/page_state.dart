@@ -37,3 +37,16 @@ class OnSignInPage extends PageState {
   @override
   List<Object> get props => [];
 }
+
+class OnContactPage extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnEditProfilePage extends PageState {
+  final UserWhatsapp user;
+
+  OnEditProfilePage(this.user);
+  @override
+  List<Object> get props => [];
+}

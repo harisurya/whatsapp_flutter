@@ -10,9 +10,18 @@ class _WrapperState extends State<Wrapper> {
 
   @override
   Widget build(BuildContext context) {
-    if (!(prevPageEvent is GoToSplashPage)) {
-      prevPageEvent = GoToSplashPage();
-      context.watch<PageBloc>().add(GoToSplashPage());
+    if (firebaseAuth.currentUser == null) {
+      if (!(prevPageEvent is GoToSplashPage)) {
+        prevPageEvent = GoToSplashPage();
+        context.watch<PageBloc>().add(GoToSplashPage());
+      }
+    } else {
+      if (!(prevPageEvent is GoToHomePage)) {
+        context.watch<UserBloc>().add(LoadUser(firebaseAuth.currentUser.uid));
+
+        prevPageEvent = GoToHomePage();
+        context.watch<PageBloc>().add(GoToHomePage());
+      }
     }
 
     return BlocBuilder<PageBloc, PageState>(builder: (_, pageState) {
@@ -26,6 +35,10 @@ class _WrapperState extends State<Wrapper> {
         return SignInPage();
       } else if (pageState is OnSettingPage) {
         return SettingPage();
+      } else if (pageState is OnContactPage) {
+        return ContactPage();
+      } else if (pageState is OnEditProfilePage) {
+        return EditProfilePage(pageState.user);
       } else {
         return HomePage();
       }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:whatsapp_flutter/models/models.dart';
 
 part 'page_event.dart';
 part 'page_state.dart';
@@ -23,6 +24,10 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnSignInPage();
     } else if (event is GoToSettingPage) {
       yield OnSettingPage();
+    }else if (event is GoToContactPage) {
+      yield OnContactPage();
+    }else if (event is GoToEditProfilePage) {
+      yield OnEditProfilePage(event.user);
     }else {
       yield OnHomePage();
     }

@@ -26,4 +26,19 @@ class UserServices {
         profilePicture: snapshot.data()['profilePicture'],
         name: snapshot.data()['name']);
   }
+
+  static Future<List<UserWhatsapp>> getUsers() async {
+    List<UserWhatsapp> users = [];
+    QuerySnapshot snapshot = await _userCollection.get();
+
+    var documents = snapshot.docs;
+    for (var document in documents) {
+      users.add(UserWhatsapp(document.id, document.data()['email'],
+          gender: document.data()['gender'],
+          profilePicture: document.data()['profilePicture'],
+          name: document.data()['name']));
+    }
+
+    return users;
+  }
 }
