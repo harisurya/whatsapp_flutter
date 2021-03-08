@@ -16,6 +16,7 @@ class _WrapperState extends State<Wrapper> {
         context.watch<PageBloc>().add(GoToSplashPage());
       }
     } else {
+      currentUserID = firebaseAuth.currentUser.uid;
       if (!(prevPageEvent is GoToHomePage)) {
         context.watch<UserBloc>().add(LoadUser(firebaseAuth.currentUser.uid));
 
@@ -39,6 +40,8 @@ class _WrapperState extends State<Wrapper> {
         return ContactPage();
       } else if (pageState is OnEditProfilePage) {
         return EditProfilePage(pageState.user);
+      } else if (pageState is OnChatPage) {
+        return ChatPage(user: pageState.user);
       } else {
         return HomePage();
       }

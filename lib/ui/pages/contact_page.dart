@@ -10,7 +10,8 @@ class ContactPage extends StatefulWidget {
 class _ContactPageState extends State<ContactPage> {
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
+    return 
+    WillPopScope(
       onWillPop: () async {
         context.read<PageBloc>().add(GoToHomePage());
         return;
@@ -23,13 +24,6 @@ class _ContactPageState extends State<ContactPage> {
               curve: Curves.easeInOut,
               color: tealGreenDark,
             ),
-            SafeArea(
-                child: AnimatedContainer(
-              duration: Duration(milliseconds: 400),
-              curve: Curves.easeInOut,
-              color: tealGreenDark,
-              // child:
-            )),
             Align(
               alignment: Alignment.topLeft,
               child: Container(

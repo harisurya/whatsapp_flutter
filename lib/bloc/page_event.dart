@@ -47,3 +47,11 @@ class GoToEditProfilePage extends PageEvent {
   @override
   List<Object> get props => [];
 }
+
+class GoToChatPage extends PageEvent {
+   final UserWhatsapp user;
+
+  GoToChatPage(this.user);
+  @override
+  List<Object> get props => [];
+}

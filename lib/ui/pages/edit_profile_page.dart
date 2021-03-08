@@ -21,8 +21,44 @@ class _EditProfilePageState extends State<EditProfilePage> {
           Align(
             alignment: Alignment.topLeft,
             child: Container(
+              margin: EdgeInsets.only(top: 30),
+              color: isDarkMode ? darkBackground : Colors.white,
               child: Column(
                 children: [
+                  Container(
+                    height: 70,
+                    color: tealGreenDark,
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              context.read<PageBloc>().add(GoToHomePage());
+                            },
+                            child: Container(
+                              width: 40,
+                              height: 40,
+                              child: Icon(
+                                Icons.keyboard_arrow_left,
+                                color: Colors.white,
+                                size: 40,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Container(
+                            height: 40,
+                            child: Center(
+                              child: Text(
+                                "Edit Profile",
+                                style: whiteTextFont.copyWith(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ),
+                          ),
+                        ]),
+                  ),
                   Container(
                     width: 90,
                     height: 104,
@@ -88,7 +124,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

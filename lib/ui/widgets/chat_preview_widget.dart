@@ -1,7 +1,8 @@
 part of 'widgets.dart';
 
 class ChatPreviewWidget extends StatelessWidget {
-  const ChatPreviewWidget({Key key}) : super(key: key);
+  final UserWhatsapp user;
+  const ChatPreviewWidget({Key key, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +16,11 @@ class ChatPreviewWidget extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.topCenter,
-                child: SpinKitFadingCircle(
-                  color: isDarkMode ? Colors.white : tealGreen,
-                  size: 70,
+                child: Container(
+                  child: SpinKitFadingCircle(
+                    color: grey,
+                    size: 60,
+                  ),
                 ),
               ),
               Align(
@@ -74,7 +77,9 @@ class ChatPreviewWidget extends StatelessWidget {
                   height: 13,
                 ),
                 Divider(
-                  color: isDarkMode ? grey : Colors.black.withOpacity(0.2),
+                  color: isDarkMode
+                      ? Colors.white.withOpacity(0.2)
+                      : Colors.black.withOpacity(0.2),
                   thickness: 1,
                 ),
               ],

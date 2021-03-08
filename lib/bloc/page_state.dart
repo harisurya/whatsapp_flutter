@@ -50,3 +50,12 @@ class OnEditProfilePage extends PageState {
   @override
   List<Object> get props => [];
 }
+
+
+class OnChatPage extends PageState {
+   final UserWhatsapp user;
+
+  OnChatPage(this.user);
+  @override
+  List<Object> get props => [];
+}

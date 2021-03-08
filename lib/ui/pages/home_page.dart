@@ -184,7 +184,9 @@ class _HomePageState extends State<HomePage> {
     List<Widget> widgets = [];
 
     for (var i = 0; i < 20; i++) {
-      widgets.add(ChatPreviewWidget());
+      widgets.add(ChatPreviewWidget(
+        user: UserWhatsapp("", ""),
+      ));
     }
 
     return SingleChildScrollView(

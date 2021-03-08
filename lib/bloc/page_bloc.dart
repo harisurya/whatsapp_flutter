@@ -28,6 +28,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnContactPage();
     }else if (event is GoToEditProfilePage) {
       yield OnEditProfilePage(event.user);
+    }else if (event is GoToChatPage) {
+      yield OnChatPage(event.user);
     }else {
       yield OnHomePage();
     }

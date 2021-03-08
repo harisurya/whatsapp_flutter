@@ -18,10 +18,15 @@ class StatusPreviewWidget extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.topCenter,
-                child: SpinKitFadingCircle(
-                  color: isDarkMode ? Colors.white : tealGreen,
-                  size: 70,
-                ),
+                child: Container(
+                    height: 70,
+                    width: 70,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: AssetImage("assets/avatar_male.png"),
+                          fit: BoxFit.cover,
+                        ))),
               ),
               Align(
                 alignment: Alignment.topCenter,
@@ -65,7 +70,7 @@ class StatusPreviewWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 Divider(
-                  color: isDarkMode ? grey : Colors.black.withOpacity(0.2),
+                  color: isDarkMode ? Colors.white.withOpacity(0.2) : Colors.black.withOpacity(0.2),
                   thickness: 1,
                 ),
               ],
