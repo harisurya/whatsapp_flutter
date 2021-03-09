@@ -7,3 +7,4 @@ import 'package:whatsapp_flutter/models/models.dart';
 
 part 'auth_services.dart';
 part 'user_services.dart';
+part 'message_services.dart';

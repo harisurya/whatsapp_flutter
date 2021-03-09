@@ -38,7 +38,7 @@ class _SignInPageState extends State<SignInPage> {
                       context.read<PageBloc>().add(GoToSignUpPage());
                     },
                     child: Container(
-                      margin: EdgeInsets.only(top: 80),
+                      margin: EdgeInsets.only(top: 60),
                       padding:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                       decoration: BoxDecoration(

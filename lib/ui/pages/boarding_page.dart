@@ -85,7 +85,7 @@ class _BoardingPageState extends State<BoardingPage> {
                                     fontWeight: FontWeight.bold),
                               ),
                               onPressed: () {
-                                context.read<PageBloc>().add(GoToSignUpPage());
+                                context.read<PageBloc>().add(GoToSignInPage());
                               }),
                         )
                       ],

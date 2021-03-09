@@ -10,8 +10,7 @@ class ContactPage extends StatefulWidget {
 class _ContactPageState extends State<ContactPage> {
   @override
   Widget build(BuildContext context) {
-    return 
-    WillPopScope(
+    return WillPopScope(
       onWillPop: () async {
         context.read<PageBloc>().add(GoToHomePage());
         return;
@@ -67,7 +66,7 @@ class _ContactPageState extends State<ContactPage> {
                           ]),
                     ),
                     FutureBuilder(
-                      future: UserServices.getUsers(),
+                      future: UserServices.getUsers(currentUserID),
                       builder: (_, snapshot) {
                         if (snapshot.hasData) {
                           List<UserWhatsapp> users = snapshot.data;

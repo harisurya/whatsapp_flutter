@@ -5,11 +5,6 @@ class UserServices {
       FirebaseFirestore.instance.collection("users");
 
   static Future<void> updateUser(UserWhatsapp user) async {
-    // String genres = "";
-
-    // for (var genre in user.selectedGenres) {
-    //   genres += genre + ((genre != user.selectedGenres.last) ? ',' : '');
-    // }
     _userCollection.doc(user.id).set({
       'email': user.email,
       'name': user.name,
@@ -27,11 +22,12 @@ class UserServices {
         name: snapshot.data()['name']);
   }
 
-  static Future<List<UserWhatsapp>> getUsers() async {
+  static Future<List<UserWhatsapp>> getUsers(String currentUserID) async {
     List<UserWhatsapp> users = [];
     QuerySnapshot snapshot = await _userCollection.get();
+    var documents =
+        snapshot.docs.where((document) => document.id != currentUserID);
 
-    var documents = snapshot.docs;
     for (var document in documents) {
       users.add(UserWhatsapp(document.id, document.data()['email'],
           gender: document.data()['gender'],
