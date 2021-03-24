@@ -14,4 +14,10 @@ class MessageServices {
         .limit(_limit)
         .snapshots();
   }
+
+  static Stream<QuerySnapshot> getMessageListByUserId({String groupChatId}) {
+    int _limit = 20;
+
+    return _messagesCollection.snapshots(includeMetadataChanges: true);
+  }
 }

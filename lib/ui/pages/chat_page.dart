@@ -206,16 +206,16 @@ class _ChatPageState extends State<ChatPage> {
                   children: [
                     Container(
                       height: MediaQuery.of(context).size.height -
-                          200 -
-                          (isShowSticker ? 240 : 0),
+                          180 -
+                          (isShowSticker ? 260 : 0),
                       child: buildListMessage(),
                     ),
 
                     // Sticker
-                    (isShowSticker ? buildSticker() : Container()),
+                    (isShowSticker ? buildSticker() : SizedBox()),
                     Container(
                       padding: EdgeInsets.only(
-                          bottom: 30,
+                          // bottom: 30,
                           left: defaultMargin,
                           right: defaultMargin),
                       child: Row(
@@ -359,6 +359,7 @@ class _ChatPageState extends State<ChatPage> {
         transaction.set(
           documentReference,
           {
+            'groupChatId': groupChatId,
             'idFrom': id,
             'idTo': peerId,
             'timestamp': DateTime.now().millisecondsSinceEpoch.toString(),

@@ -8,6 +8,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
   PageController pageController;
+
   @override
   void initState() {
     super.initState();
@@ -183,19 +184,90 @@ class _HomePageState extends State<HomePage> {
   Widget displayChatHistory() {
     List<Widget> widgets = [];
 
-    for (var i = 0; i < 20; i++) {
-      widgets.add(ChatPreviewWidget(
-        user: UserWhatsapp("", ""),
-      ));
-    }
+    return FutureBuilder(
+        future: UserServices.getUsers(currentUserID),
+        builder: (_, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            List<UserWhatsapp> users = snapshot.data;
 
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      physics: ClampingScrollPhysics(),
-      child: Column(
-        children: widgets,
-      ),
-    );
+            for (UserWhatsapp user in users) {
+              widgets.add(ChatPreviewWidget(
+                user: user,
+                lastMessage: "dummy last message",
+                groupChatId: currentUserID + "-" + user.id,
+              ));
+            }
+
+            return SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              physics: ClampingScrollPhysics(),
+              child: Column(
+                children: widgets,
+              ),
+            );
+            // Container(
+            //   child: StreamBuilder<QuerySnapshot>(
+            //       stream: FirebaseFirestore.instance
+            //           .collection("messages")
+            //           .doc(groupChatId)
+            //           .collection(groupChatId)
+            //           .where(
+            //             "groupChatId",
+            //             isGreaterThanOrEqualTo: "K82EdOUvUrNwodwYUdbGwAIiy9C2",
+            //           )
+            //           .orderBy("groupChatId", descending: true)
+            //           .limit(1)
+            //           .snapshots(),
+            //       builder: (context, snapshot) {
+            //         if (snapshot.hasData &&
+            //             snapshot.connectionState == ConnectionState.active) {
+            //           widgets = [];
+            //           for (DocumentSnapshot doc in snapshot.data.docs) {
+            //             print(doc);
+            //             String chatmateId = doc
+            //                 .data()['groupChatId']
+            //                 .toString()
+            //                 .replaceAll("-", "")
+            //                 .replaceAll("K82EdOUvUrNwodwYUdbGwAIiy9C2", "");
+            //             widgets.add(FutureBuilder(
+            //               future: UserServices.getUser(id: chatmateId),
+            //               builder: (_, snapshot) {
+            //                 if (snapshot.connectionState ==
+            //                     ConnectionState.done) {
+            //                   UserWhatsapp user = snapshot.data;
+            //                   return ChatPreviewWidget(
+            //                     user: user,
+            //                     lastMessage: doc.data()['content'],
+            //                   );
+            //                 } else {
+            //                   return SpinKitFadingCircle(
+            //                     color: Colors.white,
+            //                     size: 50,
+            //                   );
+            //                 }
+            //               },
+            //             ));
+            //           }
+            //           return SingleChildScrollView(
+            //             scrollDirection: Axis.vertical,
+            //             physics: ClampingScrollPhysics(),
+            //             child: Column(
+            //               children: widgets,
+            //             ),
+            //           );
+            //         } else {
+            //           return SizedBox();
+            //         }
+            //       }),
+            // );
+
+          } else {
+            return SpinKitFadingCircle(
+              color: Colors.white,
+              size: 50,
+            );
+          }
+        });
   }
 
   Widget displayStatusHistory() {
@@ -247,6 +319,24 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: widgets,
       ),
+    );
+  }
+
+  Widget displayMessageList() {
+    return Container(
+      child: StreamBuilder(
+          stream: MessageServices.getMessageListByUserId(
+              groupChatId:
+                  "KoshFVjPNsXbktbTKX26OIEspxD2-K82EdOUvUrNwodwYUdbGwAIiy9C2"),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              print(snapshot.data);
+
+              return Text("ada data");
+            } else {
+              return SizedBox();
+            }
+          }),
     );
   }
 }

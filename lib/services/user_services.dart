@@ -13,7 +13,7 @@ class UserServices {
     });
   }
 
-  static Future<UserWhatsapp> getUser(String id) async {
+  static Future<UserWhatsapp> getUser({String id}) async {
     DocumentSnapshot snapshot = await _userCollection.doc(id).get();
 
     return UserWhatsapp(id, snapshot.data()['email'],

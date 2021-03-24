@@ -18,3 +18,4 @@ Future<String> uploadImage(File image) async {
     return null;
   }
 }
+

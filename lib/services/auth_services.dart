@@ -26,7 +26,8 @@ class Authservices {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
 
-      UserWhatsapp user = await UserServices.getUser(userCredential.user.uid);
+      UserWhatsapp user =
+          await UserServices.getUser(id: userCredential.user.uid);
 
       return SignInSignUpResult(user: user);
     } on FirebaseAuthException catch (e) {

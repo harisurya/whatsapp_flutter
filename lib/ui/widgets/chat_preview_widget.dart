@@ -1,9 +1,18 @@
 part of 'widgets.dart';
 
-class ChatPreviewWidget extends StatelessWidget {
+class ChatPreviewWidget extends StatefulWidget {
   final UserWhatsapp user;
-  const ChatPreviewWidget({Key key, this.user}) : super(key: key);
+  final String lastMessage;
+  final String groupChatId;
+  const ChatPreviewWidget(
+      {Key key, this.user, this.lastMessage, this.groupChatId})
+      : super(key: key);
 
+  @override
+  _ChatPreviewWidgetState createState() => _ChatPreviewWidgetState();
+}
+
+class _ChatPreviewWidgetState extends State<ChatPreviewWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,7 +62,7 @@ class ChatPreviewWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Justin Timberlake",
+                      widget.user.name,
                       style: whiteTextFont.copyWith(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
@@ -67,12 +76,30 @@ class ChatPreviewWidget extends StatelessWidget {
                 SizedBox(
                   height: 5,
                 ),
-                Text(
-                  "Okay, I ll meet you there buddy",
-                  style: whiteTextFont.copyWith(
-                      fontSize: 14,
-                      color: isDarkMode ? Colors.white : Colors.black),
-                ),
+                StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection("messages")
+                        .doc(widget.groupChatId)
+                        .collection(widget.groupChatId)
+                        // .orderBy("groupChatId", descending: true)
+                        .limit(1)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      switch (snapshot.connectionState) {
+                        case ConnectionState.active:
+                          DocumentSnapshot document;
+                          if (snapshot.data.docs.isNotEmpty) {
+                             document = snapshot.data.docs[0];
+                          }
+                          return Text(document != null
+                              ? document.data()['content']
+                              : "", style: whiteTextFont,);
+                        case ConnectionState.waiting:
+                          return SizedBox();
+                        default:
+                          return SizedBox();
+                      }
+                    }),
                 SizedBox(
                   height: 13,
                 ),

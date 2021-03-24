@@ -16,7 +16,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     UserEvent event,
   ) async* {
     if (event is LoadUser) {
-      UserWhatsapp user = await UserServices.getUser(event.id);
+      UserWhatsapp user = await UserServices.getUser(id: event.id);
       yield UserLoaded(user);
     } else if (event is SignOut) {
       await Authservices.signOut();
